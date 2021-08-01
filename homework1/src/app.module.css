@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+}
+.app{
+    background-color: darkturquoise;
+    height: 20px;
+    padding: 10px;
+    margin: 0px;
+}
+.message{
+    background-color: yellow;
+    margin: 0;
+    height: 20px;
+}
