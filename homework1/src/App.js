@@ -1,4 +1,4 @@
-// import { createElement, Component } from "react";
+ // import { createElement, Component } from "react";
 import {useEffect, useState} from "react";
 import styles from "./app.module.css";
 
@@ -25,9 +25,13 @@ export function App() {
     useEffect(()=>{
         const lastMessage = messageList[messageList.length - 1];//найдем последнее сообщение
         if (lastMessage?.author === "user"){//если последнее сообщение от юзера
-            setTimeout(()=>{
+            const timerID = setTimeout(()=>{
                 setMessageList(state => [...state, {value: "Привет, я бот!", author:"bot"}])//обновим массив сообщений добавляя сообщение от бота
-            }, 1500)
+            }, 1500);
+            return function cleanup() {
+                clearTimeout(timerID);
+                console.log('таймер очищен')
+            }
         }
     }, [messageList])//в зависимости поставим массив сообщений
     return (
