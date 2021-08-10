@@ -1,1 +1,1 @@
-export * from "./message-list" // экспортируем всё, что в компоненте Messages
+export * from "./message-list"; // экспортируем всё, что в компоненте Messages
