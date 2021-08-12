@@ -12,11 +12,15 @@
 .listItem {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   /*background-color: darkgray;*/
-  height: 50px;
   color: white;
-  text-align: center;
+  text-align: left;
+  min-width: 50px;
+  font-size: 10px;
 }
 
+.listItem span {
+  font-size: 10px;
+}
 .buttonAdd {
   width: 85%;
   height: 50px;
@@ -30,4 +34,44 @@
 }
 .buttonAdd:hover {
   background-color: rgba(0, 0, 0, 0.08);
+}
+.listItemLink {
+  text-decoration: none;
+}
+.listItemLink div {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.chatName span {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  margin: 0;
+}
+
+.chatList_listItem__1mE9X {
+  font-size: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  color: #007cad;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #007cad;
+  color: white;
+}
+
+.btn:active {
+  background-color: white;
+  color: #007cad;
 }
