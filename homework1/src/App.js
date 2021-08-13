@@ -36,7 +36,7 @@ export function App() {
 
 //Создадим компонент Message, отображающий переданный ему пропсом текст (можно его создать в отдельном файле, тогда еще импортировать)
 
-export function Message(props) {
-  console.log(props);
-  return <p className={stylesMessages.title}> {props.user.text} </p>;
-}
+// export function Message(props) {
+//   console.log(props);
+//   return <p className={stylesMessages.title}> {props.user.text} </p>;
+// }
