@@ -4,3 +4,4 @@
 export const TOGGLE_NAME_VISIBLE = "@profile/toggle name visible";
 export const EDIT_DATA = "@profile/edit data";
 export const SAVE = "@profile/save";
+export const EDIT_USER = "@profile/edit user";

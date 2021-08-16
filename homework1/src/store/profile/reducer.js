@@ -1,4 +1,4 @@
-import { TOGGLE_NAME_VISIBLE, EDIT_DATA, SAVE } from "./types";
+import { TOGGLE_NAME_VISIBLE, EDIT_DATA, SAVE, EDIT_USER } from "./types";
 // import {withMobileDialog} from "@material-ui/core";
 
 //2. Создадим тут объект, а у него будет свойство count = 0
@@ -8,8 +8,8 @@ const initialState = {
   user: {
     firstName: "Ваня",
     soName: "Иванов",
-    age: 28,
-    birthDay: "24.01.1993",
+    age: "28",
+    birthDay: "05.01.1993",
   },
   edit: false, //изначально - редактировать нельзя
 };
@@ -34,6 +34,12 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         edit: false, //при нажатии на сохранение, редактирование больше невозможно
+      };
+    case EDIT_USER:
+      console.log("в редюссере");
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       //по умолчанию если у нас нету такого типа
