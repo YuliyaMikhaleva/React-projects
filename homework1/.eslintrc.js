@@ -42,7 +42,7 @@ module.exports = {
     // ESLINT-PLUGIN-IMPORT
     // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
     "import/no-unresolved": "off",
-    "import/no-default-export": "error",
+    "import/no-default-export": "off", //было "error"
     "import/order": [
       "error",
       {
@@ -92,7 +92,7 @@ module.exports = {
         ],
       },
     ],
-    "react/self-closing-comp": "error",
+    "react/self-closing-comp": "off", //было "error"
     // REACT-HOOKS
     // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
     "react-hooks/rules-of-hooks": "warn",

@@ -57,6 +57,7 @@ export const ChatList = ({ conversations, allMessages, addRoom }) => {
           const currentMessages = allMessages[chat.title] || []; //получаем сообщение по названию комнаты; если комнаты нет, то пустой массив
           const lastMessage = currentMessages[currentMessages?.length - 1]; //получаем последнее сообщение
           console.log(lastMessage);
+
           return (
             <Link
               className={stylesChats.listItemLink}
