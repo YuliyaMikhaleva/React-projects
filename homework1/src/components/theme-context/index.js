@@ -13,7 +13,7 @@ export const DefaultThemeProvider = ({ children, themes, initialTheme }) => {
   const [theme, setTheme] = useState({
     //тема - это объект с ключами
     theme: themes[initialTheme], // по ключу обращаемся к текущей теме
-    name: "mint", //имя текущей темы
+    name: "мятная", //имя текущей темы
   });
 
   //изменение темы

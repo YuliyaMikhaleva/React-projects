@@ -8,9 +8,7 @@ export function Welcome() {
     <Switch>
       <Route path="/">
         <div className={stylesPage.pageWelcome}>
-          <h1 className={stylesPage.welcomeText}>
-            Привет! Добро пожаловать в чат!
-          </h1>
+          <h1 className={stylesPage.welcomeText}>Привет! Добро пожаловать в чат!</h1>
           <Link to="/chat" style={{ textDecoration: "none" }}>
             <button className={stylesPage.welcomeBtn}>Войти в чат</button>
             <img
@@ -21,7 +19,7 @@ export function Welcome() {
           </Link>
         </div>
       </Route>
-      <Route exact="/chat" path="/chat">
+      <Route exact={true} path="/chat">
         <Chat />
       </Route>
       <Route path="*">
