@@ -8,7 +8,7 @@ export function Chat() {
   // "/chat/:roomId" или на пути "/chat"
   return (
     <Switch>
-      <Route path={["/chat/:roomId", "/chat"]}>
+      <Route exact={true} path={["/chat/:roomId", "/chat"]}>
         <MessageProvider>
           {([state, actions]) => (
             <Layout chats={<ChatList {...state} {...actions} />}>

@@ -1,6 +1,6 @@
 module.exports = {
   // ширина строки
-  printWidth: 80,
+  printWidth: 100,
 
   // точка с запятой убрать
   semi: true,

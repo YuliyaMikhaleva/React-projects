@@ -44,7 +44,9 @@
   flex-direction: column;
   border-radius: 10px;
 }
-
+.listItemLink div:hover {
+  background-color: #6c757d;
+}
 .chatName span {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   color: white;
