@@ -44,3 +44,17 @@
   background-color: white;
   color: #007cad;
 }
+
+.user{
+  margin: 0;
+  font-weight: bold;
+}
+
+.userName{
+  width: 20%;
+  height: auto;
+  font-size: 14px;
+  margin: auto 10px auto auto;
+  color: white;
+  text-align: right;
+}

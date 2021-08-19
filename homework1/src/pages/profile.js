@@ -6,7 +6,8 @@ import styles from "../profile.module.css";
 import { toggleNameVisible } from "../store/profile";
 
 function Profile() {
-  const nameVisible = useSelector((state) => state.nameVisible); //вытаскиваем данные
+  const nameVisible = useSelector((state) => state.profile.nameVisible); //вытаскиваем данные
+  console.log(nameVisible);
   const dispatch = useDispatch();
   return (
     <div className={styles.pageProfile}>
