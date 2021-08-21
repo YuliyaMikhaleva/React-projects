@@ -24,11 +24,11 @@ export const useFormInput = function (initialValue) {
 };
 
 export const ProfileForm = () => {
-  const { firstName, soName, age, birthDay } = useSelector((state) => state.user); //вытаскиваем данные по ключу - например firstName - Выведет Ваня
+  const { firstName, soName, age, birthDay } = useSelector((state) => state.profile.user); //вытаскиваем данные по ключу - например firstName - Выведет Ваня
 
-  const state = useSelector((state) => state.user);
+  const state = useSelector((state) => state.profile.user);
 
-  const user = useSelector((state) => state.user); //вытаскиваем данные по ключу стейта user
+  const user = useSelector((state) => state.profile.user); //вытаскиваем данные по ключу стейта user
 
   console.log(user);
 
@@ -41,7 +41,7 @@ export const ProfileForm = () => {
 
   console.log(form.value);
 
-  const edit = useSelector((state) => state.edit); //вытаскиваем данные : можно ли редактировать
+  const edit = useSelector((state) => state.profile.edit); //вытаскиваем данные : можно ли редактировать
 
   const dispatch = useDispatch(); //чтобы использовать функции
   return (

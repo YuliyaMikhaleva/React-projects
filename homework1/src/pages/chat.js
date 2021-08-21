@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Layout, MessageProvider, ChatList, MessageList } from "../components";
+import { Layout, ChatList, MessageList } from "../components";
 import stylesPage from "./page.module.css";
 export function Chat() {
   //комнаты динамические, поэтому  мы делаем такую запись. А массивом мы можем передать вот так.
@@ -9,23 +9,19 @@ export function Chat() {
   return (
     <Switch>
       <Route exact={true} path={["/chat/:roomId", "/chat"]}>
-        <MessageProvider>
-          {([state, actions]) => (
-            <Layout chats={<ChatList {...state} {...actions} />}>
-              <Route path="/chat/:roomId">
-                <MessageList {...state} {...actions} />
-              </Route>
-              <Route exact={true} path="/chat">
-                <h1 className={stylesPage.title}>Выберите диалог</h1>
-                <img
-                  className={stylesPage.img}
-                  src={process.env.PUBLIC_URL + "/logoDialog.png"}
-                  width="50"
-                />
-              </Route>
-            </Layout>
-          )}
-        </MessageProvider>
+        <Layout chats={<ChatList />}>
+          <Route path="/chat/:roomId">
+            <MessageList />
+          </Route>
+          <Route exact={true} path="/chat">
+            <h1 className={stylesPage.title}>Выберите диалог</h1>
+            <img
+              className={stylesPage.img}
+              src={process.env.PUBLIC_URL + "/logoDialog.png"}
+              width="50"
+            />
+          </Route>
+        </Layout>
       </Route>
       <Route path="*">
         <h1>такого чата нет</h1>
