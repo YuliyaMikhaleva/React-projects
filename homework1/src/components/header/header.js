@@ -9,8 +9,7 @@ import stylesHeader from "./header.module.css";
 //передади объект темы theme вместо value
 export function Header() {
   const { theme, changeTheme } = useContext(ThemeContext);
-  const userName = useSelector((state) => state.profile.user.firstName);
-  const userSoName = useSelector((state) => state.profile.user.soName);
+  const user = useSelector((state) => state.profile.user);
   return (
     <>
       {/*<ThemeContext.Consumer>*/}
@@ -49,7 +48,7 @@ export function Header() {
         </div>{" "}
         <p className={stylesHeader.headerTitle}>CHAT</p>
         <span className={stylesHeader.userName}>
-          <p className={stylesHeader.user}>Пользователь:</p> {userName} {userSoName}
+          <p className={stylesHeader.user}>Пользователь:</p> {user.firstName} {user.soName}
         </span>
         <Link to="/profile" style={{ textDecoration: "none" }}>
           <button className={stylesHeader.btnToCab}>Войти в личный кабинет</button>

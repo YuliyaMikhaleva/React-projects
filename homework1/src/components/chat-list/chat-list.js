@@ -34,10 +34,6 @@ renderRow.propTypes = {
 //к нам приходят сonversations
 //пока уберем из пропсов {allMessages, addRoom}
 export const ChatList = () => {
-  const state = useSelector((state) => state.conversations.conversations);
-  console.log(state);
-  const store = useSelector((state) => state.conversations); //массив из 2х комнат
-  console.log(store);
   const dispatch = useDispatch();
 
   // const [chats, setChats] = useState([
