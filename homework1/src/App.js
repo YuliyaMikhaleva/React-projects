@@ -6,7 +6,7 @@ import stylesChats from "./components/chat-list/chatList.module.css";
 import stylesMessages from "./components/message-list/messageList.module.css";
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme);
+  // console.log(theme);
   return {
     root: {
       flexGrow: 1,

@@ -44,9 +44,9 @@
   flex-direction: column;
   border-radius: 10px;
 }
-.listItemLink div:hover {
-  background-color: #6c757d;
-}
+/*.listItemLink div:hover {*/
+/*  background-color: #6c757d;*/
+/*}*/
 .chatName span {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   color: white;
@@ -78,3 +78,40 @@
   color: #007cad;
 }
 
+.iconDelete{
+  text-align: end;
+  display: block;
+  color: #b2dfee;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 5px;
+}
+
+.iconDelete:hover{
+  color: white;
+}
+
+.iconDelete:active{
+  color: #b2dfee;
+}
+
+.iconEdit{
+  text-align: end;
+  display: block;
+  color: #b2dfee;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  left: 5px;
+}
+
+.iconEdit:hover{
+  color: white;
+}
+
+.iconEdit:active{
+  color: #b2dfee;
+}
