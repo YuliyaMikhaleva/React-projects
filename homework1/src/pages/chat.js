@@ -1,8 +1,21 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Switch, Route, useHistory } from "react-router-dom";
 import { Layout, ChatList, MessageList } from "../components";
 import stylesPage from "./page.module.css";
 export function Chat() {
+  const { push } = useHistory();
+
+  useEffect(() => {
+    const listenExistChat = ({ code }) => {
+      if (code === "Escape") {
+        push("/chat");
+      }
+    };
+    document.addEventListener("keydown", listenExistChat);
+    return () => {
+      document.removeEventListener("keydown", listenExistChat);
+    };
+  }, [push]);
   //комнаты динамические, поэтому  мы делаем такую запись. А массивом мы можем передать вот так.
   //то есть мы говорим нашему роуту, что ты должен отработать в том случае, если ты находишься на пути
   // "/chat/:roomId" или на пути "/chat"

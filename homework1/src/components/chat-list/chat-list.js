@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { addRoom } from "../../store/conversations";
+import { addRoom, editNameRoom, deleteRoom } from "../../store/conversations";
 import stylesChats from "./chatList.module.css";
 
 const useStyles = makeStyles(() => ({
@@ -35,24 +35,16 @@ renderRow.propTypes = {
 //пока уберем из пропсов {allMessages, addRoom}
 export const ChatList = () => {
   const dispatch = useDispatch();
-
-  // const [chats, setChats] = useState([
-  //   { name: "room 1", id: 1 },
-  //   { name: "room 2", id: 2 },
-  //   { name: "room 3", id: 3 },
-  // ]);
   const classes = useStyles();
   const { roomId } = useParams();
   const { conversations } = useSelector((state) => state.conversations); //Мы вытаскиваем комнаты из store
   const messages = useSelector((state) => state.messages.messages);
-  // const lastMessage = messages[messages?.length - 1];
-  // console.log(lastMessage);
-  // const addRoom = () => {
-  //   const index = chats.length + 1;
-  //   setChats((state) => [...state, { name: `room ${index}`, id: index }]);
-  // };
 
-  //теперь перебираем conversations, а не массив заранее определенных бесед
+  const editName = (id, title) => {
+    const newName = prompt("Редактировать сообщение:", title); //новое значение из модалки
+    dispatch(editNameRoom(id, newName)); //вызывается функция отправки нашего сообщения
+  };
+
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="secondary mailbox folder">
@@ -61,15 +53,28 @@ export const ChatList = () => {
 
           const currentMessages = messages[chat.title] || []; //получаем сообщение по названию комнаты; если комнаты нет, то пустой массив
           const lastMessage = currentMessages[currentMessages?.length - 1]; //получаем последнее сообщение
-          console.log(lastMessage);
+          // console.log(lastMessage);
 
           return (
             <Link className={stylesChats.listItemLink} key={index} to={`/chat/${chat.title}`}>
               <ListItem key={index} button={true} selected={roomId === chat.title}>
+                <button
+                  className={stylesChats.iconEdit}
+                  onClick={() => editName(chat.id, chat.title)}
+                >
+                  <i className="fa fa-edit"></i>
+                </button>
+                <button
+                  className={stylesChats.iconDelete}
+                  onClick={() => dispatch(deleteRoom(chat.id))}
+                >
+                  <i className="fa fa-trash-alt"></i>
+                </button>
                 <ListItemText
                   className={stylesChats.chatName}
                   primary={chat.title} //было chat.name
                 />
+
                 {lastMessage && (
                   <ListItemText
                     className={stylesChats.listItem}

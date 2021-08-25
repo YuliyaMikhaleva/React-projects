@@ -29,6 +29,7 @@
   color: black;
   display: flex;
   flex-direction: column;
+  margin: 0 0 10px 0;
 }
 .blockMessageBot {
   background-color: rgba(0, 0, 0, 0.08);
@@ -58,4 +59,19 @@
 
 .textMessage {
   margin: 0;
+}
+
+.iconEdit{
+  margin: 0;
+  text-align: end;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.iconEdit:hover{
+  color: #007cad;
+}
+
+.iconEdit:active{
+  color: black;
 }

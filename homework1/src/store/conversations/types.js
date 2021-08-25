@@ -4,3 +4,5 @@
 export const HANDLE_CHANGE_MESSAGE_VALUE = "@conversations/handle change value";
 export const CLEAR_MESSAGE_VALUE = "@conversations/clear message value";
 export const ADD_ROOM = "@conversations/add room";
+export const DELETE_ROOM = "@conversations/delete room";
+export const EDIT_NAME_ROOM = "@conversations/edit name room";

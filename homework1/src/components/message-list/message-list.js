@@ -3,11 +3,10 @@ import { Send } from "@material-ui/icons";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { clearMessageValue, handleChangeMessageValue } from "../../store/conversations";
-import { sendMessage } from "../../store/messages";
+import { handleChangeMessageValue } from "../../store/conversations";
+import { sendMessageWithThunk } from "../../store/messages";
 import { Message } from "./message";
 import stylesMessages from "./messageList.module.css";
-
 // const user = { text: "Чат: GB React 26.07" };
 
 const CssTextField = withStyles({
@@ -54,15 +53,14 @@ export const MessageList = ({
       state.conversations.conversations.find((conversation) => conversation.title === roomId)
         ?.value || "",
   );
-  console.log(value);
   //заменить useState на провайде!
   // const [m, setMessageList] = useState([]); //добавили поле стейта messageList - В нем будем хранить массив объектов сообщений, начальное значение - пустой массив
   // const [value2, setValue] = useState(""); //добавили поле стейта value - значение поля ввода, начальное значение - пустая строка
   //по клику на кнопку отправить будет выполняться функция
   const handleSendMessage = () => {
     if (value) {
-      dispatch(sendMessage({ author: "User", message: value }, roomId));
-      dispatch(clearMessageValue(roomId));
+      // dispatch(sendMessage({ author: "User", message: value }, roomId));
+      dispatch(sendMessageWithThunk({ author: "User", message: value }, roomId));
     }
     // setMessageList((state) => [
     //   ...state,
@@ -87,19 +85,18 @@ export const MessageList = ({
 
   //Функция для побочных эффектов
   useEffect(() => {
-    const lastMessage = messages[messages.length - 1]; //найдем последнее сообщение
+    // const lastMessage = messages[messages.length - 1]; //найдем последнее сообщение
     const height = 870;
     let timerID;
     ref.current.focus();
-    console.log(refBlock.current.scrollHeight);
+    // console.log(refBlock.current.scrollHeight);
 
     //Если высота страницы (870) < высоты прокрутки, то прокрутить вниз
     if (height < refBlock.current.scrollHeight) {
       window.scrollTo(0, 9999);
     }
-    // const checkReading.read = this.scrollHeight - this.scrollTop === this.clientHeight;
 
-    console.log(lastMessage?.author);
+    // console.log(lastMessage?.author);
     // if (lastMessage?.author === "User") {
     //   //если последнее сообщение от юзера
     //   timerID = setTimeout(() => {

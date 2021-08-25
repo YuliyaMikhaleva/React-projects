@@ -5,10 +5,11 @@ import { Provider } from "react-redux"; //импортируем провайд�
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import { App } from "./App";
+import { PersistGate } from "redux-persist/integration/react";
 import { DefaultThemeProvider } from "./components/theme-context";
 import { Chat, Welcome, Error404 } from "./pages";
 import Profile from "./pages/profile";
-import { store } from "./store"; //импортируем store из нашей папочки store
+import { persistore, store } from "./store"; //импортируем store из нашей папочки store
 
 // создаем тему material
 // const theme = createTheme({
@@ -36,21 +37,19 @@ const themes = {
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <BrowserRouter>
-        <DefaultThemeProvider themes={themes} initialTheme={"мятная"}>
-          <Switch>
-            <Route exact={true} path="/chat" component={() => <Chat />} />
-            <Route
-              exact={true}
-              path="/chat/:roomId"
-              component={() => <Chat />}
-            />
-            <Route exact={true} path="/" component={() => <Welcome />} />
-            <Route exact={true} path="/profile" component={() => <Profile />} />
-            <Route path="*" component={() => <Error404 />} />
-          </Switch>
-        </DefaultThemeProvider>
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistore}>
+        <BrowserRouter>
+          <DefaultThemeProvider themes={themes} initialTheme={"мятная"}>
+            <Switch>
+              <Route exact={true} path="/chat" component={() => <Chat />} />
+              <Route exact={true} path="/chat/:roomId" component={() => <Chat />} />
+              <Route exact={true} path="/" component={() => <Welcome />} />
+              <Route exact={true} path="/profile" component={() => <Profile />} />
+              <Route path="*" component={() => <Error404 />} />
+            </Switch>
+          </DefaultThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
     </React.StrictMode>
   </Provider>,
   document.getElementById("root"),

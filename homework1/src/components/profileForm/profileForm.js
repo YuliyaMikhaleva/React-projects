@@ -26,11 +26,9 @@ export const useFormInput = function (initialValue) {
 export const ProfileForm = () => {
   const { firstName, soName, age, birthDay } = useSelector((state) => state.profile.user); //вытаскиваем данные по ключу - например firstName - Выведет Ваня
 
-  const state = useSelector((state) => state.profile.user);
-
   const user = useSelector((state) => state.profile.user); //вытаскиваем данные по ключу стейта user
 
-  console.log(user);
+  // console.log(user);
 
   const form = useFormInput({
     firstName: user.firstName,
@@ -39,7 +37,7 @@ export const ProfileForm = () => {
     birthDay: user.birthDay,
   });
 
-  console.log(form.value);
+  // console.log(form.value);
 
   const edit = useSelector((state) => state.profile.edit); //вытаскиваем данные : можно ли редактировать
 
@@ -110,7 +108,7 @@ export const ProfileForm = () => {
             onClick={() => {
               dispatch(editUser(form.value));
               dispatch(save());
-              console.log(state.user);
+              // console.log(state.user);
             }}
           >
             Сохранить

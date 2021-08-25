@@ -36,7 +36,6 @@ export const profileReducer = (state = initialState, action) => {
         edit: false, //при нажатии на сохранение, редактирование больше невозможно
       };
     case EDIT_USER:
-      console.log("в редюссере");
       return {
         ...state,
         user: action.payload,
