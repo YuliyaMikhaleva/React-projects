@@ -46,7 +46,16 @@ export function Header() {
             </li>
           </ul>
         </div>{" "}
-        <p className={stylesHeader.headerTitle}>CHAT</p>
+        <Link to="/gists" style={{ textDecoration: "none" }}>
+          <button className={stylesHeader.btnToCab}>Gists</button>
+        </Link>
+        <Link to="/anime" style={{ textDecoration: "none" }}>
+          <button className={stylesHeader.btnToCab}>Gists Anime</button>
+        </Link>
+        <Link to="/chat" style={{ textDecoration: "none" }}>
+          <button className={stylesHeader.btnToCab}>Chat</button>
+        </Link>
+        {/*<p className={stylesHeader.headerTitle}>CHAT</p>*/}
         <span className={stylesHeader.userName}>
           <p className={stylesHeader.user}>Пользователь:</p> {user.firstName} {user.soName}
         </span>

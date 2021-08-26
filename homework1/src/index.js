@@ -7,9 +7,9 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import { App } from "./App";
 import { PersistGate } from "redux-persist/integration/react";
 import { DefaultThemeProvider } from "./components/theme-context";
-import { Chat, Welcome, Error404 } from "./pages";
+import { Chat, Welcome, Error404, Gist, Anime } from "./pages";
 import Profile from "./pages/profile";
-import { persistore, store } from "./store"; //импортируем store из нашей папочки store
+import { persistore, store } from "./store";
 
 // создаем тему material
 // const theme = createTheme({
@@ -45,6 +45,8 @@ ReactDOM.render(
               <Route exact={true} path="/chat/:roomId" component={() => <Chat />} />
               <Route exact={true} path="/" component={() => <Welcome />} />
               <Route exact={true} path="/profile" component={() => <Profile />} />
+              <Route exact={true} path="/gists" component={() => <Gist />} />
+              <Route exact={true} path="/anime" component={() => <Anime />} />
               <Route path="*" component={() => <Error404 />} />
             </Switch>
           </DefaultThemeProvider>

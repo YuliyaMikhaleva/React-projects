@@ -3,3 +3,5 @@ export * from "./chat";
 export * from "./welcome";
 export * from "./404";
 export * from "./profile";
+export * from "./gist";
+export * from "./animegists";
