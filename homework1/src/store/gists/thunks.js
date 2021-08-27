@@ -28,7 +28,7 @@ export const getGists = (page = 1) => {
   };
 };
 
-export const searchGistsByUserNameApi = (name, isCurrentQuery) => {
+export const searchGistsByUserName = (name, isCurrentQuery) => {
   return async (dispatch, _, api) => {
     try {
       dispatch(searchGistsStart()); //ВЫЗОВ СТАРТА ЗАПРОСА
