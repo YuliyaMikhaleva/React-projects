@@ -10,7 +10,14 @@ export const HANDLE_CHANGE_MESSAGE_VALUE_ERROR = "@conversations/error handle ch
 //очистка значения инпута после отправки сообщения
 export const CLEAR_MESSAGE_VALUE = "@conversations/clear message value";
 
-export const ADD_ROOM = "@conversations/add room";
+//добавление новой комнаты
+// export const ADD_ROOM = "@conversations/add room";
+
+export const ADD_ROOM_START = "@conversations/start add room";
+export const ADD_ROOM_SUCCESS = "@conversations/success add room";
+export const ADD_ROOM_ERROR = "@conversations/error add room";
+
+
 
 export const DELETE_ROOM = "@conversations/delete room"
 

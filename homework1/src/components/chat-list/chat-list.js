@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { addRoom, editNameRoom, deleteRoom } from "../../store/conversations";
+import { addConversationsFB, editNameRoom, deleteRoom } from "../../store/conversations";
 import stylesChats from "./chatList.module.css";
 
 const useStyles = makeStyles(() => ({
@@ -58,6 +58,9 @@ export const ChatList = () => {
     //   </div>
     // );
   }
+  if (conversationsError){
+    console.log("ОШИБКА")
+  }
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="secondary mailbox folder">
@@ -107,7 +110,7 @@ export const ChatList = () => {
       <button
         className={stylesChats.btn}
         onClick={() => {
-          dispatch(addRoom());
+          dispatch(addConversationsFB());
         }}
       >
         Добавить беседу

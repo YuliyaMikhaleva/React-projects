@@ -40,7 +40,7 @@ const themes = {
 //Создаем комнату1 и комнату2
 const addConversation = () => {
   //обращаемся к необходимой коллекции, далее к ребенку коллекции и устанавливаем ей название room1, value ""
-  db.ref("conversations").child('room3').set({title:"room3", value:"test3"})
+  db.ref("conversations").child('room1').set({title:"room1", value:"test1"})
 }
 
 //Создаем сообщения

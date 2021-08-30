@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import {
-  ADD_ROOM,
+  // ADD_ROOM,
   CLEAR_MESSAGE_VALUE,
   DELETE_ROOM,
   EDIT_NAME_ROOM,
@@ -10,6 +10,9 @@ import {
   HANDLE_CHANGE_MESSAGE_VALUE_START,
   HANDLE_CHANGE_MESSAGE_VALUE_SUCCESS,
   HANDLE_CHANGE_MESSAGE_VALUE_ERROR,
+  ADD_ROOM_START,
+  ADD_ROOM_SUCCESS,
+  ADD_ROOM_ERROR,
 } from "./types";
 
 // gists: [], //массив наших гистов, то есть данных с сервера
@@ -22,7 +25,7 @@ const initialState = {
     // { id: nanoid(), title: "room2", value: "test value 2" },
   ],
   conversationsPending: false,
-  conversationsError: null
+  conversationsError: null,
 };
 
 export const conversationsReducer = (state = initialState, action) => {
@@ -31,7 +34,7 @@ export const conversationsReducer = (state = initialState, action) => {
     case HANDLE_CHANGE_MESSAGE_VALUE_START:
       return {
         ...state,
-        conversationsPending: true
+        conversationsPending: true,
       };
     case HANDLE_CHANGE_MESSAGE_VALUE_SUCCESS:
       return {
@@ -39,15 +42,15 @@ export const conversationsReducer = (state = initialState, action) => {
         conversationsPending: false,
         conversations: state.conversations.map((conversation) => {
           return conversation.title === action.payload.roomId
-              ? { ...conversation, value: action.payload.value, id: nanoid() }
-              : conversation;
+            ? { ...conversation, value: action.payload.value, id: nanoid() }
+            : conversation;
         }),
       };
     case HANDLE_CHANGE_MESSAGE_VALUE_ERROR:
       return {
         ...state,
         conversationsPending: false,
-        conversationsError: action.payload
+        conversationsError: action.payload,
       };
     case CLEAR_MESSAGE_VALUE:
       return {
@@ -58,17 +61,42 @@ export const conversationsReducer = (state = initialState, action) => {
             : conversation;
         }),
       };
-    case ADD_ROOM:
+    // case ADD_ROOM:
+    //   return {
+    //     ...state,
+    //     conversations: [
+    //       ...state.conversations,
+    //       {
+    //         id: nanoid(),
+    //         title: `room ${state.conversations.length + 1}`,
+    //         value: `test value${state.conversations.length + 1}`,
+    //       },
+    //     ],
+    //   };
+
+    case ADD_ROOM_START:
       return {
         ...state,
+        conversationsPending: true,
+      };
+    case ADD_ROOM_SUCCESS:
+      return {
+        ...state,
+        conversationsPending: false,
         conversations: [
           ...state.conversations,
           {
-            id: nanoid(),
+            // id: nanoid(),
             title: `room ${state.conversations.length + 1}`,
             value: `test value${state.conversations.length + 1}`,
           },
         ],
+      };
+    case ADD_ROOM_ERROR:
+      return {
+        ...state,
+        conversationsPending: false,
+        conversationsError: action.payload,
       };
     case DELETE_ROOM:
       return {
@@ -95,13 +123,13 @@ export const conversationsReducer = (state = initialState, action) => {
       return {
         ...state,
         conversationsPending: false,
-        conversations: action.payload
+        conversations: action.payload,
       };
     case GET_CONVERSATIONS_ERROR:
       return {
         ...state,
         conversationsPending: false,
-        conversationsError: action.payload
+        conversationsError: action.payload,
       };
     default:
       //по умолчанию если у нас нету такого типа

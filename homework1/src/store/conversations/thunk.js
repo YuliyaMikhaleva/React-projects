@@ -1,4 +1,6 @@
 import debounce from "lodash.debounce";
+import {nanoid} from "nanoid";
+import {useSelector} from "react-redux";
 import { db } from "../../api/firebase";
 import {
   getConversationsError,
@@ -7,7 +9,12 @@ import {
   handleChangeMessageValueError,
   handleChangeMessageValueStart,
   handleChangeMessageValueSuccess,
+  addRoomStart,
+  addRoomSuccess,
+  addRoomError,
 } from "./actions";
+
+
 
 //получение списка бесед из бекенда
 export const getConversationsFB = () => (dispatch) => {
@@ -43,3 +50,27 @@ export const handleChangeMessageValueFB = (messageValue, roomId) => async (dispa
     dispatch(handleChangeMessageValueError(e));
   }
 };
+
+//получение списка бесед из бекенда
+export const addConversationsFB = () => (dispatch) => {
+  dispatch(addRoomStart()); //вызов старта запроса
+  const res = db.ref("conversations").child(`room ${nanoid()}`)
+      .set(
+          {
+            title: `room ${nanoid()}`,
+            value: `test value${nanoid()}`,
+          }
+          )
+      if (res) {
+        try {
+          console.log(res.key)
+          dispatch(addRoomSuccess());
+        } catch (e) {
+          dispatch(addRoomError(e));
+          console.log(e);
+        }
+      }
+
+};
+
+db.ref("conversations").child('room1').set({title:"room1", value:"test1"})
