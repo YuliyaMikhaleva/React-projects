@@ -4,7 +4,7 @@ export const timeoutScheduler = () => (next) => (action) => {
     //если этого свойства нет
     return next(action); //то вызовем нашу функцию next и передадим туда action
   }
-  //а если это свойство есть вызываем запустим нашу функцию next с каким-то интервалом, указанным в свойстве delay
+  //а если это свойство есть вызываем запустим нашу функцию next с каким-то таймаутом, указанным в свойстве delay
   const timeoutId = setTimeout(() => next(action), delay);
   return function clear() {
     clearInterval(timeoutId);

@@ -56,3 +56,33 @@
   background-color: white;
   color: black;
 }
+
+.btnQuery{
+  background-color: #b2dfee;
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.btnQuery:hover{
+  background-color: #007cad;
+  color: white;
+}
+
+.btnQuery:active{
+  background-color: #b2dfee;
+  color: black;
+}
+
+.hr{
+  margin: 0;
+}
+
+.gistsBlock{
+  margin: 10px;
+}
+
+.spinner{
+  margin: 50vh;
+  color: #b2dfee;
+}
