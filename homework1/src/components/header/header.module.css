@@ -1,6 +1,6 @@
 .header {
   background-color: #b2dfee;
-  height: 55px;
+  min-height: 55px;
   border: 1px solid white;
   display: flex;
   justify-content: space-between;
@@ -17,15 +17,15 @@
 }
 
 .btn {
-  margin: 8px 0 0 8px;
+  margin: auto;
 }
 
 .btnToCab {
   display: block;
   font-family: "Roboto";
-  margin: 8px 8px 0 8px;
+  /*margin: 8px 8px 0 8px;*/
   border: none;
-  width: 180px;
+  min-width: 140px;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;

@@ -4,27 +4,50 @@ import {
   CLEAR_MESSAGE_VALUE,
   DELETE_ROOM,
   EDIT_NAME_ROOM,
-  HANDLE_CHANGE_MESSAGE_VALUE,
+  GET_CONVERSATIONS_START,
+  GET_CONVERSATIONS_SUCCESS,
+  GET_CONVERSATIONS_ERROR,
+  HANDLE_CHANGE_MESSAGE_VALUE_START,
+  HANDLE_CHANGE_MESSAGE_VALUE_SUCCESS,
+  HANDLE_CHANGE_MESSAGE_VALUE_ERROR,
 } from "./types";
+
+// gists: [], //массив наших гистов, то есть данных с сервера
+//     gistsPending: false, //состояние загрузки
+//     gistsError: null, //состояние ошибки
 
 const initialState = {
   conversations: [
-    { id: nanoid(), title: "room1", value: "test value 1" },
-    { id: nanoid(), title: "room2", value: "test value 2" },
+    // { id: nanoid(), title: "room1", value: "test value 1" },
+    // { id: nanoid(), title: "room2", value: "test value 2" },
   ],
+  conversationsPending: false,
+  conversationsError: null
 };
 
 export const conversationsReducer = (state = initialState, action) => {
   //мы посмотрим что action у нас пришел с типом
   switch (action.type) {
-    case HANDLE_CHANGE_MESSAGE_VALUE:
+    case HANDLE_CHANGE_MESSAGE_VALUE_START:
       return {
         ...state,
+        conversationsPending: true
+      };
+    case HANDLE_CHANGE_MESSAGE_VALUE_SUCCESS:
+      return {
+        ...state,
+        conversationsPending: false,
         conversations: state.conversations.map((conversation) => {
           return conversation.title === action.payload.roomId
-            ? { ...conversation, value: action.payload.value, id: nanoid() }
-            : conversation;
+              ? { ...conversation, value: action.payload.value, id: nanoid() }
+              : conversation;
         }),
+      };
+    case HANDLE_CHANGE_MESSAGE_VALUE_ERROR:
+      return {
+        ...state,
+        conversationsPending: false,
+        conversationsError: action.payload
       };
     case CLEAR_MESSAGE_VALUE:
       return {
@@ -62,6 +85,23 @@ export const conversationsReducer = (state = initialState, action) => {
             ? { ...conversation, title: action.payload.newTitle }
             : conversation;
         }),
+      };
+    case GET_CONVERSATIONS_START:
+      return {
+        ...state,
+        conversationsPending: true,
+      };
+    case GET_CONVERSATIONS_SUCCESS:
+      return {
+        ...state,
+        conversationsPending: false,
+        conversations: action.payload
+      };
+    case GET_CONVERSATIONS_ERROR:
+      return {
+        ...state,
+        conversationsPending: false,
+        conversationsError: action.payload
       };
     default:
       //по умолчанию если у нас нету такого типа

@@ -115,3 +115,10 @@
 .iconEdit:active{
   color: #b2dfee;
 }
+
+.spinner{
+  color:#007cad;
+  margin: 10px 64px;
+  display: flex;
+  justify-content: center;
+}

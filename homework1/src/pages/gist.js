@@ -1,7 +1,6 @@
 import debounce from "lodash.debounce"
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {Header} from "../components/header/header";
 import { getGists, searchGistsByUserName } from "../store/gists"
 import stylesPage from "./page.module.css";
 
@@ -43,7 +42,6 @@ export function Gist() {
     if (gistsError) {
         return (
             <div>
-                <Header />
                 <h1>oooppss...</h1>
             </div>
         );
@@ -51,7 +49,6 @@ export function Gist() {
 
     return (
         <div>
-            <Header />
             {/*<button onClick={getGists}>Получить данные</button>*/}
             {Array.from({ length: 10 }).map((_, index) => (
                 <button

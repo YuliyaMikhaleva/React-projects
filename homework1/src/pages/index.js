@@ -5,3 +5,5 @@ export * from "./404";
 export * from "./profile";
 export * from "./gist";
 export * from "./animegists";
+export * from "./login";
+export * from "./sign-up";
