@@ -6,7 +6,7 @@ import { Provider } from "react-redux"; //импортируем провайд�
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import { App } from "./App";
 import { PersistGate } from "redux-persist/integration/react";
-import { firebaseApp, db } from "./api/firebase";
+import { firebaseApp } from "./api/firebase";
 import { PrivateRoute, PublicRoute } from "./components";
 import { Header } from "./components/header/header";
 import { DefaultThemeProvider } from "./components/theme-context";
@@ -37,19 +37,17 @@ const themes = {
   }),
 };
 
-//Создаем комнату1 и комнату2
-const addConversation = () => {
-  //обращаемся к необходимой коллекции, далее к ребенку коллекции и устанавливаем ей название room1, value ""
-  db.ref("conversations").child('room1').set({title:"room1", value:"test1"})
-}
-
-//Создаем сообщения
-const createMessage = (roomId) => {
-  //обращаемся к необходимой коллекции, далее к ребенку коллекции и устанавливаем ей название room1, value ""
-  db.ref("messages").child('room2').push({id: 1, author:"User", message:"some text2"})
-}
-
-
+// //Создаем комнату1 и комнату2
+// const addConversation = () => {
+//   //обращаемся к необходимой коллекции, далее к ребенку коллекции и устанавливаем ей название room1, value ""
+//   db.ref("conversations").child("room2").set({ title: "room2", value: "test2" });
+// };
+//
+// //Создаем сообщения
+// const createMessage = (roomId) => {
+//   //обращаемся к необходимой коллекции, далее к ребенку коллекции и устанавливаем ей название room1, value ""
+//   db.ref("messages").child("room2").push({ id: 1, author: "User", message: "some text2" });
+// };
 
 //вынесем в отдельную функцию:
 // роуты можно писать так: component={() => <Chat />}
