@@ -33,16 +33,14 @@ export function Header({ session }) {
   // //функция выхода из профиля = запрос
   const signOut = async () => {
     try {
-      await setPending(true);//начало загрузки
-      await console.log(pending);
+      setPending(true);//начало загрузки
       await firebaseApp.auth().signOut(); //пока await не выполнится, дальше не идет
-      await setEmail(""); //очистка состояния
-      await setPending(false);//окончание загрузки
+      // await setEmail(""); //очистка состояния
+      setPending(false);//окончание загрузки
       console.log("ЗАГРУЗКА")
-      await console.log(email);
     } catch (e) {
-      await setError(e.message);//сообщение ошибки
-      await console.log(error);
+      setError(e.message);//сообщение ошибки
+      console.log(error);
     }
   };
 

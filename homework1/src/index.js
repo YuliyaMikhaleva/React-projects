@@ -75,8 +75,8 @@ const App = () => {
         <PersistGate loading={null} persistor={persistore}>
           <BrowserRouter>
             <DefaultThemeProvider themes={themes} initialTheme={"мятная"}>
-              <button onClick={addConversation}>Добавить комнату</button>
-              <button onClick={createMessage}>Добавить сообщение в комнату</button>
+              {/*<button onClick={addConversation}>Добавить комнату</button>*/}
+              {/*<button onClick={createMessage}>Добавить сообщение в комнату</button>*/}
               <Header session={session} />
               <Switch>
                 <PrivateRoute exact={true} isAut={session} path="/chat" component={Chat} />
