@@ -2,7 +2,13 @@ import { applyMiddleware, combineReducers, createStore, compose } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
+import {
+  getConversationsApi,
+  handleChangeMessageApi,
+  addConversationApi,
+} from "../api/conversations";
 import { getGistsApi, searchGistsByUserNameApi } from "../api/gists";
+import { getMessagesApi, sendMessagesApi } from "../api/messages"; //импортируем api получения сообщений и api отправления сообщений и добавим их в стор
 import { gistsAnimeReducer } from "./animegists";
 import { conversationsReducer } from "./conversations"; //импортируем profileReducer
 import { gistsReducer } from "./gists";
@@ -33,7 +39,15 @@ export const store = createStore(
   compose(
     applyMiddleware(
       report,
-      thunk.withExtraArgument({ getGistsApi, searchGistsByUserNameApi }), //всё, что передаем в этот метод, попадет третьим параметром в thunk
+      thunk.withExtraArgument({
+        getGistsApi,
+        searchGistsByUserNameApi,
+        getMessagesApi,
+        sendMessagesApi,
+        getConversationsApi,
+        handleChangeMessageApi,
+        addConversationApi,
+      }), //всё, что передаем в этот метод, попадет третьим параметром в thunk
       logger,
       botSendMessage,
       timeoutScheduler,

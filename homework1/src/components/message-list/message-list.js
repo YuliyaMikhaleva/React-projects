@@ -1,12 +1,17 @@
 import { InputAdornment, TextField, withStyles } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
+import {nanoid} from "nanoid";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { handleChangeMessageValue } from "../../store/conversations";
+// import { handleChangeMessageValue } from "../../store/conversations";
+import {handleChangeMessageValueFB} from "../../store/conversations";
 import { sendMessageWithThunk } from "../../store/messages";
+import stylesChats from "../chat-list/chatList.module.css";
 import { Message } from "./message";
 import stylesMessages from "./messageList.module.css";
+
+
 // const user = { text: "Чат: GB React 26.07" };
 
 const CssTextField = withStyles({
@@ -34,18 +39,21 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-export const MessageList = ({
+export const MessageList = (
+    {
   // messages,
   // value,
   // sendMessage,
   // handleChangeValue,
   sendMessageFromBot,
-}) => {
+}
+) => {
+  const { messages, messagesPending, messagesError } = useSelector((state) => state.messages);
   const dispatch = useDispatch();
   const ref = useRef(null);
   const refBlock = useRef(null);
   const { roomId } = useParams();
-  const messages = useSelector((state) => state.messages.messages[roomId] || []); //забираем комнаты из store, а если комнаты нет, вернем пустой массив
+  const messagesArr = useSelector((state) => state.messages.messages[roomId] || []); //забираем комнаты из store, а если комнаты нет, вернем пустой массив
 
   //достаем из глобального состояния value - значение инпута
   const value = useSelector(
@@ -53,6 +61,7 @@ export const MessageList = ({
       state.conversations.conversations.find((conversation) => conversation.title === roomId)
         ?.value || "",
   );
+  console.log(value);
   //заменить useState на провайде!
   // const [m, setMessageList] = useState([]); //добавили поле стейта messageList - В нем будем хранить массив объектов сообщений, начальное значение - пустой массив
   // const [value2, setValue] = useState(""); //добавили поле стейта value - значение поля ввода, начальное значение - пустая строка
@@ -112,15 +121,24 @@ export const MessageList = ({
       clearTimeout(timerID);
       console.log("таймер очищен");
     };
-  }, [messages, sendMessageFromBot]); //в зависимости поставим массив сообщений
+  }, [messagesArr]); //в зависимости поставим массив сообщений
   // console.log(m, value2);
 
+  // if (messagesPending){
+  //   console.log('ЗАГРУЗКА ОТПРАВКИ')
+  // }
+  if (messagesError){
+    return <h1>ooooopppssss...</h1>
+  }
+  if (messages){
+    console.log(messages)
+  }
   //Меняем немного структуру: Вместо Value - message
   return (
     <>
       <div className={stylesMessages.chat} style={{ overflow: scroll }} ref={refBlock}>
         <div className={stylesMessages.message}>
-          {messages.map((message, id) => (
+          {messagesArr.map((message, id) => (
             <Message key={id} {...message} date={message.date} />
           ))}
         </div>
@@ -128,7 +146,7 @@ export const MessageList = ({
         <CssTextField
           id="outlined-basic"
           inputRef={ref}
-          onChange={(event) => dispatch(handleChangeMessageValue(event.target.value, roomId))} //изменили функцию
+          onChange={(event) => dispatch(handleChangeMessageValueFB(event.target.value, roomId))} //изменили функцию
           autoFocus={true} //автофокусировка
           label="Введите сообщение"
           className={stylesMessages.text}
@@ -139,6 +157,8 @@ export const MessageList = ({
           InputProps={{
             endAdornment: (
               <InputAdornment>
+                {messagesPending && (<div className={stylesChats.spinner}><div className="spinner-border" role="status"></div></div>)}
+
                 {value && <Send style={{ cursor: "pointer" }} onClick={handleSendMessage} />}
               </InputAdornment>
             ),

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Header } from "../components/header/header";
 import { getGists } from "../store/animegists";
 import stylesPage from "./page.module.css";
 
@@ -20,7 +19,6 @@ export function Anime() {
     // если pending(загрузка), то вернем pending,
     return (
       <div>
-        <Header />
         <div className={stylesPage.spinner}>
           <div className="spinner-border" role="status"></div>
         </div>
@@ -31,7 +29,6 @@ export function Anime() {
     //если error, то вернем какую-то ошибку,
     return (
       <div>
-        <Header />
         <h1>oooppss...</h1>
       </div>
     );
@@ -39,7 +36,6 @@ export function Anime() {
   //иначе если всё ок, то вернем данные
   return (
     <div>
-      <Header />
       {/*<button onClick={getGists}>Получить данные</button>*/}
       {Array.from({ length: 10 }).map((_, index) => (
         <button

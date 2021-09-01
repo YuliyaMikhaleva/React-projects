@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { addRoom, editNameRoom, deleteRoom } from "../../store/conversations";
+import { addConversationsFB, editNameRoom, deleteRoom } from "../../store/conversations";
 import stylesChats from "./chatList.module.css";
 
 const useStyles = makeStyles(() => ({
@@ -34,10 +34,15 @@ renderRow.propTypes = {
 //к нам приходят сonversations
 //пока уберем из пропсов {allMessages, addRoom}
 export const ChatList = () => {
+  const { conversations, conversationsPending, conversationsError } = useSelector(
+    (state) => state.conversations,
+  );
+  console.log("PENDING", conversationsPending);
+  console.log("CONVERSATIONS", conversations);
   const dispatch = useDispatch();
   const classes = useStyles();
   const { roomId } = useParams();
-  const { conversations } = useSelector((state) => state.conversations); //Мы вытаскиваем комнаты из store
+  // const { conversations} = useSelector((state) => state.conversations); //Мы вытаскиваем комнаты из store
   const messages = useSelector((state) => state.messages.messages);
 
   const editName = (id, title) => {
@@ -45,6 +50,17 @@ export const ChatList = () => {
     dispatch(editNameRoom(id, newName)); //вызывается функция отправки нашего сообщения
   };
 
+  if (conversationsPending) {
+    console.log("ЗАГРУЗКА");
+    // return (
+    //   <div className={stylesChats.spinner}>
+    //     <div className="spinner-border" role="status"></div>
+    //   </div>
+    // );
+  }
+  if (conversationsError){
+    console.log("ОШИБКА")
+  }
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="secondary mailbox folder">
@@ -86,10 +102,15 @@ export const ChatList = () => {
           );
         })}
       </List>
+      {conversationsPending && (
+        <div className={stylesChats.spinner}>
+          <div className="spinner-border" role="status"></div>
+        </div>
+      )}
       <button
         className={stylesChats.btn}
         onClick={() => {
-          dispatch(addRoom());
+          dispatch(addConversationsFB());
         }}
       >
         Добавить беседу

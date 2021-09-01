@@ -3,7 +3,6 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 import stylesChats from "../chat-list/chatList.module.css";
-import { Header } from "../header/header";
 import stylesMessages from "../message-list/messageList.module.css";
 import { ThemeContext } from "../theme-context";
 import styles from "./layout.module.css";
@@ -15,7 +14,6 @@ export function Layout({ chats, children }) {
         {({ theme }) => {
           return (
             <div>
-              <Header />
               <Grid container={true} className={styles.app}>
                 <Grid
                   item={true}
