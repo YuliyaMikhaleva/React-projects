@@ -1,7 +1,6 @@
 import React from "react";
 import { ProfileForm } from "./profileForm";
 import { renderWithRedux } from "../../utils/render-with-redux";
-import { nanoid } from "nanoid";
 
 let state = null;
 
@@ -29,5 +28,5 @@ describe("profile component", () => {
     expect(container.querySelector("#soName").value).toBe("Иванов");
     expect(container.querySelector("#age").value).toBe("28");
     expect(container.querySelector("#birthDay").value).toBe("05.01.1993");
-=  });
+  });
 });
