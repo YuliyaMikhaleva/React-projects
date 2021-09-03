@@ -8,6 +8,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { addConversationsFB, editNameRoom, deleteRoom } from "../../store/conversations";
+import { Chat } from "./chat";
 import stylesChats from "./chatList.module.css";
 
 const useStyles = makeStyles(() => ({
@@ -58,8 +59,8 @@ export const ChatList = () => {
     //   </div>
     // );
   }
-  if (conversationsError){
-    console.log("ОШИБКА")
+  if (conversationsError) {
+    console.log("ОШИБКА");
   }
   return (
     <div className={classes.root}>
@@ -72,33 +73,35 @@ export const ChatList = () => {
           // console.log(lastMessage);
 
           return (
-            <Link className={stylesChats.listItemLink} key={index} to={`/chat/${chat.title}`}>
-              <ListItem key={index} button={true} selected={roomId === chat.title}>
-                <button
-                  className={stylesChats.iconEdit}
-                  onClick={() => editName(chat.id, chat.title)}
-                >
-                  <i className="fa fa-edit"></i>
-                </button>
-                <button
-                  className={stylesChats.iconDelete}
-                  onClick={() => dispatch(deleteRoom(chat.id))}
-                >
-                  <i className="fa fa-trash-alt"></i>
-                </button>
-                <ListItemText
-                  className={stylesChats.chatName}
-                  primary={chat.title} //было chat.name
-                />
-
-                {lastMessage && (
-                  <ListItemText
-                    className={stylesChats.listItem}
-                    primary={`${lastMessage.author}:${lastMessage.message}`} //и выводим последнее сообщение в верстку
-                  />
-                )}
-              </ListItem>
-            </Link>
+            <Chat key={index} id={chat.id} title={chat.title} selected={roomId === chat.title} />
+            // <Link className={stylesChats.listItemLink} key={index} to={`/chat/${chat.title}`}>
+            //   <ListItem key={index} button={true} selected={roomId === chat.title}>
+            //     <button
+            //       className={stylesChats.iconEdit}
+            //       onClick={() => editName(chat.id, chat.title)}
+            //     >
+            //       <i className="fa fa-edit"></i>
+            //     </button>
+            //     <button
+            //       className={stylesChats.iconDelete}
+            //       onClick={() => dispatch(deleteRoom(chat.id))}
+            //     >
+            //       <i className="fa fa-trash-alt"></i>
+            //     </button>
+            //     <ListItemText
+            //       id="nameChat"
+            //       className={stylesChats.chatName}
+            //       primary={chat.title} //было chat.name
+            //     />
+            //
+            //     {lastMessage && (
+            //       <ListItemText
+            //         className={stylesChats.listItem}
+            //         primary={`${lastMessage.author}:${lastMessage.message}`} //и выводим последнее сообщение в верстку
+            //       />
+            //     )}
+            //   </ListItem>
+            // </Link>
           );
         })}
       </List>

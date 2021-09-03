@@ -22,17 +22,18 @@ const persistConfig = {
   blacklist: ["conversations", "messages"], //те редюссеры, которые НЕ будут сохранены
   whitelist: ["profile"], //те редюссеры, которые будут сохранены
 };
+
+//сделаем новую переменную
+export const reducer = combineReducers({
+  profile: profileReducer,
+  conversations: conversationsReducer,
+  messages: messagesReducer,
+  gists: gistsReducer,
+  anime: gistsAnimeReducer,
+});
+
 //все наши редюссеры должны проходить через persistReducer, чтобы сохраняться
-const persistreducer = persistReducer(
-  persistConfig,
-  combineReducers({
-    profile: profileReducer,
-    conversations: conversationsReducer,
-    messages: messagesReducer,
-    gists: gistsReducer,
-    anime: gistsAnimeReducer,
-  }),
-);
+const persistreducer = persistReducer(persistConfig, reducer);
 
 export const store = createStore(
   persistreducer,
@@ -52,7 +53,8 @@ export const store = createStore(
       botSendMessage,
       timeoutScheduler,
     ),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
   ),
 ); //создали наше хранилище и передаем в него counterReducer
 
