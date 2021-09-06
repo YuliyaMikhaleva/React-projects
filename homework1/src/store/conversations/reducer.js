@@ -86,7 +86,7 @@ export const conversationsReducer = (state = initialState, action) => {
         conversations: [
           ...state.conversations,
           {
-            // id: nanoid(),
+            id: nanoid(),
             title: `room ${state.conversations.length + 1}`,
             value: `test value${state.conversations.length + 1}`,
           },

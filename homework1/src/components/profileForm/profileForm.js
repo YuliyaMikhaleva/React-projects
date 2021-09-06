@@ -51,6 +51,7 @@ export const ProfileForm = () => {
             Имя:
           </label>
           <input
+            data-testid="firstName"
             name="firstName"
             className={styles.input}
             id="firstName"

@@ -15,6 +15,7 @@ export const addConversationApi = () =>
     .ref("conversations")
     .child(`room ${nanoid()}`)
     .set({
+      id: nanoid(),
       title: `room ${nanoid()}`,
       value: `test value${nanoid()}`,
     });
